@@ -17,7 +17,7 @@ public class Hippodrome {
 
     static Hippodrome game;
 
-    static void main(String[] args) {
+    public static void main(String[] args) {
 
         Horse horse1 = new Horse("Лошадь1", 3, 0);
         Horse horse2 = new Horse("Лошадь2", 3, 0);
@@ -32,6 +32,7 @@ public class Hippodrome {
 
         game.run();
 
+        game.printWinner();
     }
 
     void run() {
@@ -61,5 +62,22 @@ public class Hippodrome {
             System.out.println();
         }
     }
-    
+
+    public Horse getWinner() {
+        int max = 0;
+        int intDistance = 0;
+
+        int index = 0;
+        for (int i = 0; i < horses.size(); i++) {
+            intDistance = (int) getHorses().get(i).getDistance();
+            if (max < intDistance) {
+                index = i;
+            }
+        }
+        return getHorses().get(index);
+    }
+
+    public void printWinner() {
+        System.out.println("Winner is " + getWinner().getName() + "!");
+    }
 }
