@@ -21,6 +21,16 @@ public class Solution {
 
     public static String toBinary(int number) {
         //напишите тут ваш код
-        return null;
+        String binaryNumber = "";
+
+        if (number < 0) {
+            return binaryNumber;
+        }
+        while (number != 0) {
+            binaryNumber = (number % 2) + binaryNumber;
+            number /= 2;
+        }
+
+        return binaryNumber;
     }
 }

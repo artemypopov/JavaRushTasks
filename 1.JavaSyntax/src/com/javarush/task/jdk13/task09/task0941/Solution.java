@@ -15,7 +15,12 @@ public class Solution {
 
     public static String[] map(String ipv6) {
         //напишите тут ваш код
-
-        return null;
+        StringTokenizer tokenizer = new StringTokenizer(ipv6, "\\:");
+        int countTokens = tokenizer.countTokens();
+        String[] token = new String[countTokens];
+        for (int i = 0; i < countTokens; i++) {
+            token[i] = tokenizer.nextToken();
+        }
+        return token;
     }
 }

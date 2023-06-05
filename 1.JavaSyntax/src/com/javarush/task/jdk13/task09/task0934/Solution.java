@@ -13,6 +13,9 @@ public class Solution {
 
     public static boolean isPalindrome(String word) {
         //напишите тут ваш код
-        return false;
+        StringBuilder builder = new StringBuilder(word);
+        String str = builder.reverse().toString().toLowerCase();
+        System.out.println(str);
+        return str.equals(word.toLowerCase());
     }
 }
