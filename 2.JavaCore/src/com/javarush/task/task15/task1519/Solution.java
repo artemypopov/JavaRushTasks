@@ -12,23 +12,28 @@ public class Solution {
     public static void main(String[] args) throws IOException {
         //напиште тут ваш код
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        String str;
         while (true) {
-            str = bufferedReader.readLine();
+            String str = bufferedReader.readLine();
             if (str.equals("exit")) {
                 break;
             }
-            if (str.contains(".")) {
+
+            if (str.matches("-?\\d+[.]\\d+")) {
                 print(Double.parseDouble(str));
-            } else if (Integer.parseInt(str) > 0 && Integer.parseInt(str) < 128) {
-                print(Short.parseShort(str));
-            } else if (Integer.parseInt(str) <= 0 && Integer.parseInt(str) >= 128) {
-                print(Integer.parseInt(str));
+            } else if (str.matches("-?\\d+")) {
+                int intStr = Integer.parseInt(str);
+                if (intStr > 0 & intStr < 128) {
+                    print((short) intStr);
+                } else {
+                    print(intStr);
+                }
             } else {
-                print((String) str);
+                print(str);
             }
         }
     }
+
+
 
     public static void print(Double value) {
         System.out.println("Это тип Double, значение " + value);
