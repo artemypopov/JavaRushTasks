@@ -1,46 +1,27 @@
 package com.javarush.task.jdk13.task09.task0930;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-
 public class ArraySorter {
 
     public void sort(String[] array) {
         //напишите тут ваш код
-        ArrayList<String> strings = new ArrayList<>();
-        ArrayList<Integer> integers = new ArrayList<>();
         for (int i = 0; i < array.length; i++) {
-            String s = array[i];
-            if (isNumber(s)) {
-                integers.add(Integer.valueOf(s));
-            } else {
-                if (s.length() == 0) {
-                    break;
+            for (int j = i + 1; j < array.length; j++) {
+                if (isNumber(array[i]) && isNumber(array[j])) {
+                    if (Integer.parseInt(array[i]) < Integer.parseInt(array[j])) {
+                        String temp = array[i];
+                        array[i] = array[j];
+                        array[j] = temp;
+                    }
+                } else if (!isNumber(array[i]) && !isNumber(array[j])) {
+                    if (isGreaterThan(array[i], array[j])) {
+                        String temp = array[i];
+                        array[i] = array[j];
+                        array[j] = temp;
+                    }
                 }
-                strings.add(s);
             }
         }
-
-
-        System.out.println(Arrays.asList(strings));
-        Collections.sort(strings);
-        System.out.println(Arrays.asList(strings));
-        System.out.println("-------------------------");
-        System.out.println(Arrays.asList(integers));
-        Collections.sort(integers, Collections.reverseOrder());
-        System.out.println(Arrays.asList(integers));
-
-        int i = 0, j = 0;
-        while (i < array.length) {
-            array[i] = strings.get(j);
-            i++;
-            array[i] = String.valueOf(integers.get(j));
-            j++;
-            i++;
-        }
-
+        
     }
 
     // Метод для сравнения строк: 'а' больше чем 'b'
