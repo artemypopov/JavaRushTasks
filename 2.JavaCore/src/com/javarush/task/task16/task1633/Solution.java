@@ -15,14 +15,21 @@ public class Solution {
 
         threadA.start();
         threadB.start();
+    // 1 решение
+    //    threadA.setUncaughtExceptionHandler(handler);
+    //    threadB.setUncaughtExceptionHandler(handler);
 
         threadA.interrupt();
         threadB.interrupt();
+        // commonThread.interrupt();  // если добывать будет выводиться "Thread-0: My exception message"
     }
 
     public static class TestedThread extends Thread {
+
         public TestedThread(Thread.UncaughtExceptionHandler handler) {
             setUncaughtExceptionHandler(handler);
+            // 2 решение
+            setDefaultUncaughtExceptionHandler(handler); // 2 решение
             start();
         }
 
