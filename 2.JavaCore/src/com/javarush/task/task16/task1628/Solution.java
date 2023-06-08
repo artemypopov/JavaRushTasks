@@ -44,8 +44,19 @@ public class Solution {
     public static class ReaderThread extends Thread {
         private List<String> result = new ArrayList<String>();
 
+//        int count = 0;
         public void run() {
             //напишите тут ваш код
+            while (!Thread.currentThread().isInterrupted()) {
+                try {
+                    if (reader.ready()) {
+                        result.add(reader.readLine());
+                        Solution.readStringCount.incrementAndGet();
+                    }
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
         }
 
         @Override
